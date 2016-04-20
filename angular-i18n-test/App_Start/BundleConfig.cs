@@ -23,6 +23,16 @@ namespace angular_i18n_test
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/angular/app").Include(
+                "~/Scripts/angular.min.js",
+                "~/Scripts/angular-route.min.js",
+                "~/Scripts/angular-sanitize.min.js",
+                "~/angular/app.js")
+                .IncludeDirectory("~/angular/services", "*.js")
+                .IncludeDirectory("~/angular/controllers", "*.js", true));
+
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

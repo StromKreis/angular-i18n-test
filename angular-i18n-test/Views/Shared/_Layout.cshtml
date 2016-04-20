@@ -1,5 +1,9 @@
-﻿<!DOCTYPE html>
-<html>
+﻿@using i18n
+@{
+    var currentLanguage = Context.GetPrincipalAppLanguageForRequest();
+}
+<!DOCTYPE html>
+<html lang="@currentLanguage" ng-app="app">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
@@ -8,8 +12,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<body>
+<body ng-controller="mainController">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -18,12 +21,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Anwendungsname", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("[[[ApplicationName]]]", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Startseite", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("[[[Home]]]", "Index", "Home", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("[[[API]]]", "Index", "Help", new { area = "" }, null)</li>
+                    @Html.Partial("_LanguageSelectori18n")
                 </ul>
             </div>
         </div>
@@ -32,12 +36,13 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Meine ASP.NET-Anwendung</p>
+            <p>&copy; @DateTime.Now.Year - [[[ApplicationName]]]</p>
         </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    @Scripts.Render("~/angular/app")
 </body>
 </html>

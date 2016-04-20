@@ -1,0 +1,21 @@
+﻿@using i18n
+
+<li>
+    @{
+        KeyValuePair<string, i18n.LanguageTag>[] langs = LanguageHelpers.GetAppLanguages().OrderBy(x => x.Key).ToArray();
+
+        foreach (var item in langs)
+        {
+            string langtag = "";
+            string title = "";
+            string nativelangname = "";
+            i18n.LanguageTag lt = item.Value;
+            title = langtag = lt.ToString();
+            nativelangname = lt.NativeNameTitleCase;
+
+            <li>
+                <a href="@Url.Action(actionName: "SetLanguage", controllerName: "Home", routeValues: new { langtag = langtag, returnUrl = Request.Url, area = "" })">@nativelangname</a>
+            </li>
+        }
+    }
+</li>
